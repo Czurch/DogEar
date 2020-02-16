@@ -21,7 +21,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -37,13 +36,13 @@
   }
 }
 
-.friend-list{
+.friend-list {
   display: flex;
   width: 300px;
   flex-grow: 1;
 }
 
-.link-box{
+.link-box {
   display: flex;
   flex-grow: 2;
   flex-wrap: wrap;
@@ -51,12 +50,12 @@
   align-content: stretch;
 }
 
-.currently-active{
+.currently-active {
   display: flex;
   flex-grow: 1;
 }
 
-.full-page-column{
+.full-page-column {
   overflow: hidden;
   width: 300px;
   height: 100%;
@@ -66,7 +65,7 @@
   font-weight: bold;
 }
 
-.post{
+.post {
   overflow: hidden;
   width: 300px;
   height: 300px;
@@ -78,22 +77,22 @@
   border-radius: 5px;
 }
 
-.post:hover{
+.post:hover {
   margin-top: 8px;
-  box-shadow: -9px 12px 28px -16px rgba(0,0,0,0.89);
+  box-shadow: -9px 12px 28px -16px rgba(0, 0, 0, 0.89);
   background-color: #181818;
 }
 
-.post img{
+.post img {
   width: 100%;
   height: 75%;
 }
 
-.post p{
+.post p {
   font-size: 12px;
 }
 
-.docked-panel{
+.docked-panel {
   overflow: hidden;
   width: 300px;
   height: 600px;
@@ -106,16 +105,14 @@
   border-radius: 5px;
 }
 
-.create-post{
-  background-color: #EEEEEE;
+.create-post {
+  background-color: #eeeeee;
   border-radius: 100%;
   padding: 0px, 5px, 5px, 5px;
   font-size: 40px;
   font-weight: bold;
 }
 
-.create-post:hover{
-  margin-top: 8px;
-  box-shadow: -9px 12px 28px -16px rgba(0,0,0,0.89);
-  background-color: #CCCCCC;
+.create-post:hover {
+  background-color: #cccccc;
 }
