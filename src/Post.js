@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Icon from "react-crud-icons";
+
+import "../node_modules/react-crud-icons/dist/css/react-crud-icons.css";
 
 const PostContainer = styled.div`
   overflow: hidden;
@@ -34,18 +37,32 @@ const PostContainer = styled.div`
   & p {
     font-size: 12px;
   }
+
+  & Icon {
+    max-height: 50px;
+    max-width: 50px;
+    background-color: #dd0000;
+  }
+
+  & Icon:hover {
+    background-color: #ff0000;
+  }
 `;
 
-function Post({ post: { linkImage, title, details, linkURL } }) {
+function Post({
+  post: { id, linkImage, title, details, linkURL },
+  removeDogear,
+}) {
   return (
-    <a href={linkURL}>
-      <PostContainer>
+    <PostContainer>
+      <a href={linkURL}>
         <img src={linkImage} alt="" />
         <h3>{title}</h3>
-        <p>{details}</p>
         <p>{linkURL}</p>
-      </PostContainer>
-    </a>
+        <p>{details}</p>
+      </a>
+      <Icon name="delete" theme="dark" size="medium" />
+    </PostContainer>
   );
 }
 

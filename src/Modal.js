@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
 import "./App.css";
 import styled from "styled-components";
+import { v4 as uuid } from "uuid";
 
 const ModalCreatePost = styled.div`
   position: absolute;
@@ -47,11 +48,12 @@ const SubmitButton = styled.button`
   border: none;
 `;
 
-function Modal({ send, onClose }) {
+function Modal({ onSubmit, onClose }) {
   const modalRef = React.useRef(null);
-  const [title, setTitle] = useState("Title");
-  //const [url, setUrl] = useState("URL");
-  //const [tags, setTags] = useState("tag1,tag2");
+  const [linkImage, setlinkImage] = useState("http://placecorgi.com/200/200");
+  const [title, setTitle] = useState("");
+  const [linkURL, setlinkURL] = useState("");
+  const [details, setDetails] = useState("");
 
   React.useEffect(() => {
     // Focus the modal on "mount"
@@ -59,39 +61,54 @@ function Modal({ send, onClose }) {
   }, []);
 
   return (
-    <ModalCreatePost onBlur={onClose} ref={modalRef}>
+    <ModalCreatePost ref={modalRef}>
       <Relative>
         <ExitButton type="button" aria-label="Close" onClick={onClose}>
           <MdClose aria-hidden />
         </ExitButton>
-        <form
-          onSubmit={e => {
-            // Do sumn here
-            // Prevents the default behavior of the event.
-            // The default behavior of a form submission
-            // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onsubmit
-            e.preventDefault();
-          }}
-        >
+        <form>
           <InputLine>
             <label>
               Title
               <input
                 type="text"
                 placeholder="Title"
-                onChange={e => setTitle(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </label>
           </InputLine>
           <InputLine>
             Link
-            <input type="text" placeholder="URL" />
+            <input
+              type="text"
+              placeholder="URL"
+              value={linkURL}
+              onChange={(e) => setlinkURL(e.target.value)}
+            />
           </InputLine>
           <InputLine>
-            Tags
-            <input type="text" placeholder="tag1, tag2" />
+            Details
+            <input
+              type="text"
+              placeholder="details"
+              value={details}
+              onChange={(e) => setDetails(e.target.value)}
+            />
           </InputLine>
-          <SubmitButton>Submit</SubmitButton>
+          <SubmitButton
+            onClick={() =>
+              onSubmit({
+                id: uuid(),
+                linkImage,
+                title,
+                details,
+                linkURL,
+              })
+            }
+          >
+            Submit
+          </SubmitButton>
         </form>
       </Relative>
     </ModalCreatePost>
