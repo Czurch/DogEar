@@ -41,9 +41,11 @@ function App() {
           </div>
         ) : null}
         <img src={logo} className="App-logo" alt="logo" />
-        {posts.map((post) => (
-          <Post post={post} removeDogear={removeDogear} />
-        ))}
+        <div className="masonry">
+          {posts.map((post) => (
+            <Post post={post} onClick={() => removeDogear(post.id)} />
+          ))}
+        </div>
         <button className="create-post" onClick={() => setModalActive(true)}>
           +
         </button>

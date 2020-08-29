@@ -5,6 +5,7 @@ import Icon from "react-crud-icons";
 import "../node_modules/react-crud-icons/dist/css/react-crud-icons.css";
 
 const PostContainer = styled.div`
+  flex: auto
   overflow: hidden;
   width: 300px;
   min-height: 300px;
@@ -49,10 +50,7 @@ const PostContainer = styled.div`
   }
 `;
 
-function Post({
-  post: { id, linkImage, title, details, linkURL },
-  removeDogear,
-}) {
+function Post({ post: { id, linkImage, title, details, linkURL }, onClick }) {
   return (
     <PostContainer>
       <a href={linkURL}>
@@ -61,7 +59,7 @@ function Post({
         <p>{linkURL}</p>
         <p>{details}</p>
       </a>
-      <Icon name="delete" theme="dark" size="medium" />
+      <Icon name="delete" theme="dark" size="medium" onClick={onClick} />
     </PostContainer>
   );
 }
