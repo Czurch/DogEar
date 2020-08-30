@@ -5,13 +5,14 @@ import Icon from "react-crud-icons";
 import "../node_modules/react-crud-icons/dist/css/react-crud-icons.css";
 
 const PostContainer = styled.div`
-  flex: auto
+  position: relative;
   overflow: hidden;
   width: 300px;
   min-height: 300px;
   margin: 10px;
   border-radius: 5px;
   background-color: #262626;
+  clip-path: circle(78% at 40% 60%);
 
   color: white;
   text-decoration: none;
@@ -40,6 +41,9 @@ const PostContainer = styled.div`
   }
 
   & Icon {
+    position: relative;
+    right: 0;
+    bottom: 0;
     max-height: 50px;
     max-width: 50px;
     background-color: #dd0000;
@@ -50,16 +54,29 @@ const PostContainer = styled.div`
   }
 `;
 
-function Post({ post: { id, linkImage, title, details, linkURL }, onClick }) {
+const TopRightTriangle = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 30px solid #ffffff;
+  border-right: 30px solid transparent;
+`;
+
+function Post({ post: { linkImage, title, details, linkURL }, onClick }) {
   return (
     <PostContainer>
+      <TopRightTriangle />
       <a href={linkURL}>
         <img src={linkImage} alt="" />
         <h3>{title}</h3>
         <p>{linkURL}</p>
         <p>{details}</p>
       </a>
-      <Icon name="delete" theme="dark" size="medium" onClick={onClick} />
+      <div className="removeIcon">
+        <Icon name="delete" theme="dark" size="medium" onClick={onClick} />
+      </div>
     </PostContainer>
   );
 }
