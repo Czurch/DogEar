@@ -35,6 +35,7 @@ function App() {
         <h1>DogEar</h1>
       </header>
       <body className="App-body">
+        <div className="full-page-column"></div>
         {modalActive ? (
           <div className="Modal-BG">
             <Modal onSubmit={addDogear} onClose={() => setModalActive(false)} />

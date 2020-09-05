@@ -14,6 +14,7 @@ const PostContainer = styled.div`
   background-color: #262626;
   clip-path: circle(78% at 40% 60%);
 
+  text-align: center;
   color: white;
   text-decoration: none;
   font-size: 20px;
@@ -60,7 +61,7 @@ const TopRightTriangle = styled.div`
   top: 0;
   width: 0;
   height: 0;
-  border-bottom: 30px solid #ffffff;
+  border-bottom: 30px solid #262626;
   border-right: 30px solid transparent;
 `;
 
