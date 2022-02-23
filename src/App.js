@@ -1,57 +1,51 @@
-import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import Post from "./Post";
-import Modal from "./Modal";
-import styled from "styled-components";
-import { v4 as uuid } from "uuid";
-
-const samplePost = {
-  id: uuid(),
-  linkImage: "http://placecorgi.com/200/200",
-  title: "What a pup",
-  details: "As you can see this is quite the pup",
-  linkURL: "http://placecorgi.com/200/200",
-};
+import React, { useState } from 'react';
+import * as peepee from './codeinjection';
+import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
 
 function App() {
-  const [posts, setPosts] = useState([samplePost]);
-  const [modalActive, setModalActive] = useState(false);
-
-  //Add new Dogear
-  const addDogear = (newPost) => {
-    setPosts([...posts, newPost]);
-    setModalActive(false);
-  };
-
-  //Remove Dogear
-  const removeDogear = (id) => {
-    setPosts([...posts.filter((post) => post.id !== id)]);
-  };
-
+  const [displayModal, setDisplayModal] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>DogEar</h1>
-      </header>
-      <body className="App-body">
-        <div className="full-page-column"></div>
-        {modalActive ? (
-          <div className="Modal-BG">
-            <Modal onSubmit={addDogear} onClose={() => setModalActive(false)} />
+        <main>
+          <div className={displayModal ? 'modal-bg display-flex' : 'modal-bg display-none'}>
+            <div className='login-modal'></div>
           </div>
-        ) : null}
-        <img src={logo} className="App-logo" alt="logo" />
-        <div className="masonry">
-          {posts.map((post) => (
-            <Post post={post} onClick={() => removeDogear(post.id)} />
-          ))}
-        </div>
-        <button className="create-post" onClick={() => setModalActive(true)}>
-          +
-        </button>
-      </body>
-    </div>
+          <header className="topnavmenu">
+            <div className='top-tab left'>
+              <a href="/"><img src="/images/file.png" alt="My Pages"/></a>
+            </div>
+            <div className='top-tab center'>
+              <button className='add-button' onClick={() => setDisplayModal(true)}><img src='/images/plus.png' alt='Add New Dogear'/></button>
+            </div>
+            <div className='top-tab right'>
+              <a href="/Login-Signup/"><img src="/images/log-in.png" alt="Log In"/></a>
+              <a href="/"><img src="/images/sign-up.png" alt="Sign Up"/></a>
+            </div>
+          </header>
+          <section className="leftnavmenu">
+            <div className="page-icon">
+              <img src="/images/distorted2.png" alt="icon"/>
+            </div>
+            <div className="page-icon">
+              <img src="/images/distorted2.png" alt="icon"/>
+            </div>
+            <div className="page-icon">
+              <img src="/images/distorted2.png" alt="icon"/>
+            </div>
+            <div className="page-icon">
+              <button onClick={peepee.CoolThingsILearned}>
+                <img src="/images/more.png" alt="add page"/>
+              </button>
+            </div>
+          </section>
+          <Routes>
+            <Route path='/Login-Signup' element={<LoginScreen/>}/>
+            <Route path='/' element={<HomeScreen/>} exact/>
+          </Routes>
+        </main>
+      
   );
 }
 
