@@ -1,13 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as peepee from './codeinjection';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import Modal from './components/Modal';
 
 function App() {
   const [displayModal, setDisplayModal] = useState(false);
+  const navigate = useNavigate();
+
+  async function populateBookmarks() {
+    const req = await fetch('/api/bookmarks', {
+      headers:{
+        'x-access-token': localStorage.getItem('token'),
+      },
+    });
+
+    const data = req.json();
+    console.log(data);
+  }
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if(token) {
+  //     if(!user) {
+  //       localStorage.removeItem('token')
+  //       navigate.replace('/Login-Signup');
+  //     } else {
+  //       populateBookmarks()
+  //     }
+  //   }
+  // }, []);
+
+
+
   return (
         <main>
           <Modal displayModal={displayModal} onExit={() =>setDisplayModal(false)}></Modal>
