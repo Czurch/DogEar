@@ -33,12 +33,42 @@ app.post('/api/login', async (req,res) => {
     if(user) {
         const token = jwt.sign({
             email: user.email,
-        }, 'alphabalugacomancheedaringfather')
+        }, 'alphabalugacomancheedaringearlyfather')
         return res.json({status: 'ok', user: token });
     } else {
         return res.json({status: 'error', user: false });
     }
     
+});
+
+app.post('/api/bookmarks', async (req,res) => {
+    const token = req.headers[x-access-token];
+    try{
+        const decoded = jwt.verify(token, 'alphabalugacomancheedaringearlyfather');
+        const email = decoded.email;
+        await User.updateOne({email: email}, { $set: { quote: req.body.bookmarks}});
+
+        return {status: 'ok'};
+    } catch(err)
+    {
+        console.log(err);
+        res.json({status: 'error', error: 'invalid token'});
+    }
+});
+
+app.get('/api/bookmarks', async (req,res) => {
+    const token = req.headers[x-access-token];
+    try{
+        const decoded = jwt.verify(token, 'alphabalugacomancheedaringearlyfather');
+        const email = decoded.email;
+        const user = await User.findOne({email: email});
+
+        return {status: 'ok'};
+    } catch(err)
+    {
+        console.log(err);
+        res.json({status: 'error', error: 'invalid token'});
+    }
 });
 
 app.listen(1337, () => {

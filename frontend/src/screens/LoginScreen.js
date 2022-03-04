@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
-import data from '../data';
-import Card from '../components/Card';
 
 function LoginScreen() {
   const navigate = useNavigate()
@@ -24,7 +22,11 @@ function LoginScreen() {
       const data = await response.json();
 
       if(data.status === 'ok') {
-        navigate.push('/Login-Signup')
+        alert('Registration successful');
+        navigate('/Login-Signup')
+      }
+      else{
+        alert('Registration FAILED');
       }
     }
 
@@ -44,7 +46,10 @@ function LoginScreen() {
       const data = await response.json();
 
       if(data.user) {
+        document.cookie(`token: ${data.user}`);
+        localStorage.setItem('token', data.user);
         alert('Login successful');
+        navigate('/');
       } else {
         alert('Incorrect username or password');
       }
