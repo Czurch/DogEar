@@ -46,8 +46,9 @@ function LoginScreen() {
       const data = await response.json();
 
       if(data.user) {
-        document.cookie(`token: ${data.user}`);
-        localStorage.setItem('token', data.user);
+        //document.cookie(`token: ${data.user}`);
+        sessionStorage.setItem('token', data.user);
+        //localStorage.setItem('token', data.user);
         alert('Login successful');
         navigate('/');
       } else {
@@ -74,7 +75,7 @@ function LoginScreen() {
           <input 
           value={password} onChange={(e) => setPassword(e.target.value)} 
           type="password"
-          d='password' 
+          id='password' 
           placeholder='password'>
           </input>
         </div>

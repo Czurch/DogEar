@@ -10,6 +10,7 @@ app.use(express.json());
 
 mongoose.connect('mongodb://localhost:27017/dogear-users')
 
+const secret = 'alphabalugacomancheedaringearlyfather';
 
 app.post('/api/register', async (req,res) => {
     console.log(req.body)
@@ -33,7 +34,7 @@ app.post('/api/login', async (req,res) => {
     if(user) {
         const token = jwt.sign({
             email: user.email,
-        }, 'alphabalugacomancheedaringearlyfather')
+        }, secret);
         return res.json({status: 'ok', user: token });
     } else {
         return res.json({status: 'error', user: false });
@@ -44,9 +45,9 @@ app.post('/api/login', async (req,res) => {
 app.post('/api/bookmarks', async (req,res) => {
     const token = req.headers[x-access-token];
     try{
-        const decoded = jwt.verify(token, 'alphabalugacomancheedaringearlyfather');
+        const decoded = jwt.verify(token, secret);
         const email = decoded.email;
-        await User.updateOne({email: email}, { $set: { quote: req.body.bookmarks}});
+        await User.updateOne({email: email}, { $set: { bookmarks: req.body.bookmarks}});
 
         return {status: 'ok'};
     } catch(err)
@@ -57,13 +58,13 @@ app.post('/api/bookmarks', async (req,res) => {
 });
 
 app.get('/api/bookmarks', async (req,res) => {
-    const token = req.headers[x-access-token];
+    const token = req.headers['x-access-token'];
     try{
-        const decoded = jwt.verify(token, 'alphabalugacomancheedaringearlyfather');
+        const decoded = jwt.verify(token, secret);
         const email = decoded.email;
         const user = await User.findOne({email: email});
 
-        return {status: 'ok'};
+        return res.json({status: 'ok', bookmarks: user.bookmarks});
     } catch(err)
     {
         console.log(err);

@@ -11,10 +11,11 @@ function App() {
   const [displayModal, setDisplayModal] = useState(false);
   const navigate = useNavigate();
 
-  async function populateBookmarks() {
+  async function AddNewBookmark() {
     const req = await fetch('http://localhost:1337/api/bookmarks', {
+      method: 'POST',
       headers:{
-        'x-access-token': localStorage.getItem('token'),
+        'x-access-token': sessionStorage.getItem('token'),
       },
     });
 
@@ -28,18 +29,34 @@ function App() {
     console.log(data);
   }
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   if(token) {
-  //     const user = jwt.decode(token)
-  //     if(!user) {
-  //       localStorage.removeItem('token')
-  //       navigate('/Login-Signup');
-  //     } else {
-  //       populateBookmarks()
-  //     }
-  //   }
-  // }, []);
+  async function populateBookmarks() {
+    console.log("getting bookmarks");
+    const req = await fetch('http://localhost:1337/api/bookmarks', {
+      method: 'GET',
+      headers:{
+        'x-access-token': sessionStorage.getItem('token'),
+      },
+    });
+
+    const data = req.json();
+    if(data.status === 'ok') {
+      //some Hook to set a new Bookmark
+      console.log("farty poop poop");
+    } else {
+      alert(data.error)
+    }
+  }
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    if(!token) navigate('/Login-Signup');
+    try{
+      populateBookmarks();
+    } catch(err)
+    {
+      console.log(err)
+    }
+  }, []);
 
   return (
         <main>
