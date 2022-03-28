@@ -43,17 +43,18 @@ app.post('/api/login', async (req,res) => {
 });
 
 app.post('/api/bookmarks', async (req,res) => {
-    const token = req.headers[x-access-token];
+    const token = req.headers['x-access-token'];
     try{
         const decoded = jwt.verify(token, secret);
         const email = decoded.email;
-        await User.updateOne({email: email}, { $set: { bookmarks: req.body.bookmarks}});
+        await User.updateOne({email: email}, { $set: { bookmarks: req.body}});
+        const user = await User.findOne({email: email});
 
-        return {status: 'ok'};
+        return res.json({status: 'ok', bookmarks: user.bookmarks});
     } catch(err)
     {
         console.log(err);
-        res.json({status: 'error', error: 'invalid token'});
+        return res.json({status: 'error', error: 'invalid token'});
     }
 });
 
@@ -68,7 +69,7 @@ app.get('/api/bookmarks', async (req,res) => {
     } catch(err)
     {
         console.log(err);
-        res.json({status: 'error', error: 'invalid token'});
+        return res.json({status: 'error', error: 'invalid token'});
     }
 });
 
