@@ -10,7 +10,7 @@ import data from './data';
 
 function App() {
   const [displayModal, setDisplayModal] = useState(false);
-  const [currentBookmarks, setCurrentBookmarks] = useState(data.bookmarks);
+  const [currentBookmarks, setCurrentBookmarks] = useState([]);
   const navigate = useNavigate();
 
   async function AddNewBookmark(newBookmark) {
@@ -19,7 +19,7 @@ function App() {
     const temp = [...currentBookmarks];
     temp.push(newBookmark);
 
-    const req = await fetch('http://localhost:1337/api/bookmarks', {
+    const req = await fetch('https://dogearapp.herokuapp.com/api/bookmarks', {
       method: 'POST',
       headers:{
         'Content-Type' : 'application/json',
@@ -41,7 +41,7 @@ function App() {
 
   async function populateBookmarks() {
     console.log("getting bookmarks");
-    const req = await fetch('http://localhost:1337/api/bookmarks', {
+    const req = await fetch('https://dogearapp.herokuapp.com/api/bookmarks', {
       method: 'GET',
       headers:{
         'x-access-token': sessionStorage.getItem('token'),

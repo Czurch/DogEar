@@ -1,0 +1,5 @@
+Currently deployed to https://dogearapp.herokuapp.com/
+
+to push changes to heroku:
+-git commit -am "name your commit"
+-git push heroku master

@@ -4,11 +4,12 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const User = require('./models/user.model');
 const jwt = require('jsonwebtoken');
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/dogear-users')
+mongoose.connect('mongodb+srv://ferrel4:b0yBagelSr@cluster0.decaw.mongodb.net/dogear-users?retryWrites=true&w=majority');
 
 const secret = 'alphabalugacomancheedaringearlyfather';
 
@@ -73,6 +74,6 @@ app.get('/api/bookmarks', async (req,res) => {
     }
 });
 
-app.listen(1337, () => {
+app.listen(process.env.PORT || 1337, () => {
     console.log('Server started on 1337');
 })
