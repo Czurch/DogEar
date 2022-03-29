@@ -9,7 +9,7 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/dogear-users')
+mongoose.connect('mongodb+srv://ferrel4:b0yBagelSr@cluster0.decaw.mongodb.net/dogear-users?retryWrites=true&w=majority');
 
 const secret = 'alphabalugacomancheedaringearlyfather';
 
