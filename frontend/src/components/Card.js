@@ -8,6 +8,7 @@ export default function Card (props) {
             <img src={bookmark.image} alt=""/>
             <h1>{bookmark.title}</h1>
             <h2>{bookmark.description}</h2>
+            </a>
             <div className='card-options'>
                 <h3>{bookmark.tags}</h3>
                 <button>
@@ -16,7 +17,6 @@ export default function Card (props) {
             </div>
             
             <h4>{bookmark.url}</h4>
-            </a>
         </div>
      )
 }

@@ -13,6 +13,7 @@ function App() {
           <Modal displayModal={displayModal} onExit={() =>setDisplayModal(false)}></Modal>
           <header className="topnavmenu">
             <div className='top-tab left'>
+              <img src='/images/doggy-icon.png' className='logo' alt='logo'/>
               <a href="/"><img src="/images/file.png" alt="My Pages"/></a>
             </div>
             <div className='top-tab center'>
@@ -25,13 +26,19 @@ function App() {
           </header>
           <section className="leftnavmenu">
             <div className="page-icon">
-              <img src="/images/distorted2.png" alt="icon"/>
+              <button>
+                <img src="/images/distorted2.png" alt="icon"/>
+              </button>
             </div>
             <div className="page-icon">
-              <img src="/images/distorted2.png" alt="icon"/>
+              <button>
+                  <img src="/images/distorted2.png" alt="icon"/>
+              </button>
             </div>
             <div className="page-icon">
-              <img src="/images/distorted2.png" alt="icon"/>
+              <button>
+                <img src="/images/distorted2.png" alt="icon"/>
+              </button>
             </div>
             <div className="page-icon">
               <button onClick={peepee.CoolThingsILearned}>
