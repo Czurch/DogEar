@@ -6,7 +6,10 @@ const User = require('./models/user.model');
 const jwt = require('jsonwebtoken');
 require("dotenv").config();
 
-app.use(cors());
+app.use(cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+}));
 app.use(express.json());
 
 mongoose.connect('mongodb+srv://ferrel4:b0yBagelSr@cluster0.decaw.mongodb.net/dogear-users?retryWrites=true&w=majority');
