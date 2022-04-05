@@ -1,5 +1,9 @@
 Currently deployed to https://dogearapp.herokuapp.com/
 
 to push changes to heroku:
+-git remote -v     -- to check if heroku is set as a remote
+if not: heroku git:remote -a dogearapp
+-git fetch heroku master
+-git pull heroku master --allow-unrelated-histories
 -git commit -am "name your commit"
 -git push heroku master
