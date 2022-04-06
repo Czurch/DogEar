@@ -6,6 +6,8 @@ import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import Modal from './components/Modal';
 import data from './data';
+import TopNavBar from './components/TopNavBar';
+import SideNavBar from './components/SideNavBar';
 //import jwt from 'jsonwebtoken';
 
 function App() {
@@ -73,41 +75,8 @@ function App() {
   return (
         <main>
           <Modal displayModal={displayModal} onExit={() =>setDisplayModal(false)} onSubmit={AddNewBookmark}></Modal>
-          <header className="topnavmenu">
-            <div className='top-tab left'>
-              <img src='/images/doggy-icon.png' className='logo' alt='logo'/>
-              <a href="/"><img src="/images/file.png" alt="My Pages"/></a>
-            </div>
-            <div className='top-tab center'>
-              <button className='add-button' onClick={() => setDisplayModal(true)}><img src='/images/plus.png' alt='Add New Dogear'/></button>
-            </div>
-            <div className='top-tab right'>
-              <a href="/Login-Signup/"><img src="/images/log-in.png" alt="Log In"/></a>
-              <a href="/"><img src="/images/sign-up.png" alt="Sign Up"/></a>
-            </div>
-          </header>
-          <section className="leftnavmenu">
-            <div className="page-icon">
-              <button>
-                <img src="/images/distorted2.png" alt="icon"/>
-              </button>
-            </div>
-            <div className="page-icon">
-              <button>
-                  <img src="/images/distorted2.png" alt="icon"/>
-              </button>
-            </div>
-            <div className="page-icon">
-              <button>
-                <img src="/images/distorted2.png" alt="icon"/>
-              </button>
-            </div>
-            <div className="page-icon">
-              <button onClick={injection.CoolThingsILearned}>
-                <img src="/images/more.png" alt="add page"/>
-              </button>
-            </div>
-          </section>
+          <TopNavBar setDisplayModal={setDisplayModal}></TopNavBar>
+          <SideNavBar></SideNavBar>
           <Routes>
             <Route path='/Login-Signup' element={<LoginScreen/>}/>
             <Route path='/' element={<HomeScreen bookmarks={currentBookmarks}/>} exact/>
