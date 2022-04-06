@@ -46,7 +46,7 @@ function LoginScreen() {
       const data = await response.json();
 
       if(data.user) {
-        //document.cookie(`token: ${data.user}`);
+        //document.cookie(`token: ${data.user}`);  //might be more secure, need to look into
         sessionStorage.setItem('token', data.user);
         //localStorage.setItem('token', data.user);
         alert('Login successful');

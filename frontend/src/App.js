@@ -41,37 +41,6 @@ function App() {
     console.log(data);
   }
 
-  async function populateBookmarks() {
-    console.log("getting bookmarks");
-    const req = await fetch('https://dogearapp.herokuapp.com/api/bookmarks', {
-      method: 'GET',
-      headers:{
-        'x-access-token': sessionStorage.getItem('token'),
-      },
-    });
-
-    const data = await req.json();
-    if(data.status === 'ok') {
-      //we were able to populate bookmarks
-      setCurrentBookmarks(data.bookmarks);
-    } else {
-      alert(data.error)
-    }
-  }
-
-  useEffect(() => {
-    const token = sessionStorage.getItem('token');
-    if(!token) navigate('/Login-Signup');
-    else{
-      try{
-        populateBookmarks();
-      } catch(err)
-      {
-        console.log(err)
-      }
-    }
-  }, []);
-
   return (
         <main>
           <Modal displayModal={displayModal} onExit={() =>setDisplayModal(false)} onSubmit={AddNewBookmark}></Modal>
@@ -79,7 +48,7 @@ function App() {
           <SideNavBar></SideNavBar>
           <Routes>
             <Route path='/Login-Signup' element={<LoginScreen/>}/>
-            <Route path='/' element={<HomeScreen bookmarks={currentBookmarks}/>} exact/>
+            <Route path='/' element={<HomeScreen bookmarks={currentBookmarks} setBookmarks = {setCurrentBookmarks}/>} exact/>
           </Routes>
         </main>
       
