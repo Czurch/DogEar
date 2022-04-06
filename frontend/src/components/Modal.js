@@ -20,13 +20,17 @@ export default function Modal(props)
     return(
         <div className={displayModal ? 'modal-bg display-flex' : 'modal-bg display-none'}>
             <div className='create-post-modal'>
-                <button onClick={onExit}>Cancel</button>
-                <h2>Create a New Post</h2>
+                <button className='close-button' onClick={onExit}>
+                    <img src='/images/plus.png'/>
+                </button>
+                <h2>Enter a New Dogear</h2>
                 <div className='input-field'>
                     <h3>Url:</h3>
-                    <input autoComplete='url' id='url' placeholder='url'></input>
+                    <input type='text' autoComplete='url' id='url' placeholder='https://www.example.com'></input>
                 </div>
-                <button onClick = {submission}>Example URL Fetch</button>
+                <div className='button-holster'>
+                    <button className= 'add-button' onClick = {() => submission()}><h3>POST</h3></button>
+                </div>
             </div>
         </div>
     )
