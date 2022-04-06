@@ -5,6 +5,7 @@ export default function Card (props) {
     return ( 
         <div key={bookmark._id} className="card">
             <a href={bookmark.url} target='_blank' rel='noopener noreferrer'>  {/* opens link in new tab*/}
+            <div className='dogear'></div>
             <img src={bookmark.image} alt=""/>
             <h1>{bookmark.title}</h1>
             <h2>{bookmark.description}</h2>
