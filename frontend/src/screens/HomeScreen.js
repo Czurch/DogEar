@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../components/Card';
 import {useNavigate} from 'react-router-dom';
+import { determineUrl } from '../codeinjection';
 
 function HomeScreen(props) {
-  const {bookmarks, setBookmarks} = props;
+  const {bookmarks, setBookmarks, debug} = props;
   const navigate = useNavigate();
   const placeholderBookmark = {
     _id: 1,
@@ -16,7 +17,7 @@ function HomeScreen(props) {
 
   async function populateBookmarks() {
     console.log("getting bookmarks");
-    const req = await fetch('https://dogearapp.herokuapp.com/api/bookmarks', {
+    const req = await fetch(determineUrl(debug) + 'bookmarks', {
       method: 'GET',
       headers:{
         'x-access-token': sessionStorage.getItem('token'),

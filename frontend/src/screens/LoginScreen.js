@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
+import { determineUrl } from '../codeinjection';
 
-function LoginScreen() {
+function LoginScreen(props) {
   const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const {debug} = props;
     async function registerUser(event) {
       event.preventDefault();
-      const response = await fetch('https://dogearapp.herokuapp.com/api/register', {
+      const response = await fetch(determineUrl(debug) + 'register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,7 +33,7 @@ function LoginScreen() {
 
     async function loginUser(event) {
       event.preventDefault();
-      const response = await fetch('https://dogearapp.herokuapp.com/api/login', {
+      const response = await fetch(determineUrl(debug) + 'login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,8 +55,6 @@ function LoginScreen() {
       } else {
         alert('Incorrect username or password');
       }
-
-      console.log(data);
     }
 
     return ( 

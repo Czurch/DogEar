@@ -53,7 +53,7 @@ export function tutorialpromise()
 
     let p = new Promise((resolve, reject) => {
         let a = 1+1
-        if(a ==2){
+        if(a === 2){
             resolve('Success')
         }else{
             reject('Failed')
@@ -114,4 +114,9 @@ export function tutorialAwait()
     }
 
     doWork()
+}
+
+export function determineUrl(str)
+{
+    return (str === 'DEBUG') ? "https://dogearapp.herokuapp.com/api/" : "http://localhost:1337/api/";
 }

@@ -5,15 +5,15 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import Modal from './components/Modal';
-import data from './data';
 import TopNavBar from './components/TopNavBar';
 import SideNavBar from './components/SideNavBar';
 //import jwt from 'jsonwebtoken';
 
 function App() {
+  const debug = "";
+
   const [displayModal, setDisplayModal] = useState(false);
   const [currentBookmarks, setCurrentBookmarks] = useState([]);
-  const navigate = useNavigate();
 
   async function AddNewBookmark(newBookmark) {
     if(!newBookmark) return;
@@ -21,7 +21,7 @@ function App() {
     const temp = [...currentBookmarks];
     temp.push(newBookmark);
 
-    const req = await fetch('https://dogearapp.herokuapp.com/api/bookmarks', {
+    const req = await fetch(injection.determineUrl(debug) + 'bookmarks', {
       method: 'POST',
       headers:{
         'Content-Type' : 'application/json',
@@ -34,7 +34,7 @@ function App() {
     const data = await req.json();
     if(data.status === 'ok') {
       //some Hook to set a new Bookmark
-      setCurrentBookmarks(data.bookmarks);
+      setCurrentBookmarks(data.bookmarks.reverse());
     } else {
       alert(data.error);
     }
@@ -43,11 +43,11 @@ function App() {
 
   return (
         <main>
-          <Modal displayModal={displayModal} onExit={() =>setDisplayModal(false)} onSubmit={AddNewBookmark}></Modal>
+          <Modal debug={debug} displayModal={displayModal} onExit={() =>setDisplayModal(false)} onSubmit={AddNewBookmark}></Modal>
           <TopNavBar setDisplayModal={setDisplayModal}></TopNavBar>
           <SideNavBar></SideNavBar>
           <Routes>
-            <Route path='/Login-Signup' element={<LoginScreen/>}/>
+            <Route path='/Login-Signup' element={<LoginScreen debug={debug}/>}/>
             <Route path='/' element={<HomeScreen bookmarks={currentBookmarks} setBookmarks = {setCurrentBookmarks}/>} exact/>
           </Routes>
         </main>
