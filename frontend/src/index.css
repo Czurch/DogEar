@@ -300,6 +300,43 @@ main {
   padding: 0.2rem;
 }
 
+.options-dropdown {
+  display: none;
+	position:absolute; right:1.5rem; bottom:2rem; z-index:999;
+	width: 0rem;
+	margin: 0; 
+  padding: 0.4rem; 
+  list-style:none;
+	background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10%;
+  transition: width 500ms;
+}
+
+.options-dropdown li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  text-align: right;
+}
+
+.options-dropdown li:hover {
+  background:#EC6603; color:#fff;
+}
+
+.options-dropdown li img {
+  position: relative;
+  right: 0px;
+}
+
+.display-li{
+  display: list-item;
+  width: 8rem;
+}
+
+
 /* Modal */
 
 .modal-bg {
@@ -462,4 +499,12 @@ main {
 .blurryboy h1 {
   font-size: 3rem;
   color: white;
+}
+
+.danger:hover {
+  background-color: #e74c3b !important;
+}
+
+.excited:hover {
+  background-color: #53bd61 !important;
 }

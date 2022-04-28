@@ -16,7 +16,6 @@ function HomeScreen(props) {
   };
 
   async function populateBookmarks() {
-    console.log("getting bookmarks");
     const req = await fetch(determineUrl(debug) + 'bookmarks', {
       method: 'GET',
       headers:{
@@ -51,11 +50,11 @@ function HomeScreen(props) {
     return ( 
     <div className="cards">
       {bookmarks.map((bookmark) => (
-      <Card key= {bookmark._id} bookmark = {bookmark}></Card>
+      <Card key= {bookmark._id} bookmark = {bookmark} setBookmarks={setBookmarks} debug={debug}></Card>
       ))}
     </div> );
   }else{
-    return(<Card bookmark = {placeholderBookmark}></Card>);
+    return(<Card bookmark = {placeholderBookmark} setBookmarks={setBookmarks} debug={debug}></Card>);
   }
 }
 

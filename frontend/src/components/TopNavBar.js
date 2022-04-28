@@ -6,7 +6,7 @@ export default function TopNavBar(props)
     return(
         <header className="topnavmenu">
         <div className='top-tab left'>
-            <img title="Welcome to Dogear!" src='/images/doggy-icon.png' className='logo' alt='logo'/>
+            <img title="Welcome to Dogear!" src='/images/dogear_logo1.png' className='logo' alt='logo'/>
             <a title="My Pages" href="/"><img src="/images/file.png" alt="My Pages"/></a>
         </div>
         <div className='top-tab center'>
